@@ -1,0 +1,10 @@
+{
+  "name": "truevineexpressltd-site",
+  "private": true,
+  "description": "Truevine Express Limited website",
+  "scripts": {
+    "build": "python3 src/build.py",
+    "test": "python3 tests/check.py site && html-validate \"site/**/*.html\""
+  },
+  "devDependencies": { "html-validate": "^9.0.0" }
+}
