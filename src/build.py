@@ -136,7 +136,7 @@ def main():
     assets()
     indexed = []
     write("/", home.build()); indexed.append("/")
-    for slug in ("it", "telecom", "logistics"):
+    for slug in ("it", "telecom", "logistics", "systems"):
         p = services.PAGES[slug]["path"]
         write(p, services.build(slug)); indexed.append(p)
     write("/about/", pages.about()); indexed.append("/about/")

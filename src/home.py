@@ -82,7 +82,7 @@ def build():
     <div>
       <span class="eyebrow reveal">IT &middot; Telecom &middot; Logistics &middot; Lagos</span>
       <h1 class="reveal reveal-d1">We connect the systems that <em class="accent">move</em> Nigerian business.</h1>
-      <p class="lede reveal reveal-d2">Truevine Express is a Lagos consultancy for IT, telecom and logistics. We design, fix and run the infrastructure behind your operation, so the network stays up, the data stays safe and the goods arrive on time.</p>
+      <p class="lede reveal reveal-d2">Truevine Express is a Lagos consultancy for IT, telecom and logistics. We implement ERP, warehouse and procurement systems, and we design, fix and run the infrastructure behind your operation, so the network stays up, the data stays safe and the goods arrive on time.</p>
       <div class="btn-row reveal reveal-d3">
         <a class="btn" href="/contact/">Book a free consultation {icon("arrow")}</a>
         <a class="btn btn--ghost" href="tel:{PHONE_TEL}">{icon("phone")} {PHONE_DISPLAY}</a>
@@ -100,8 +100,8 @@ def build():
   <div class="wrap">
     <div class="cred"><b>Since {FOUNDED}</b><span>Operating from Lagos</span></div>
     <div class="cred"><b>{RC}</b><span>Registered with the CAC</span></div>
-    <div class="cred"><b>3 practices</b><span>IT, telecom and logistics</span></div>
-    <div class="cred"><b>1 point of contact</b><span>Accountable from start to finish</span></div>
+    <div class="cred"><b>Team of 20</b><span>Delivery and operations specialists</span></div>
+    <div class="cred"><b>7 client organisations</b><span>Supported across ERP, WMS and logistics</span></div>
   </div>
 </section>
 
@@ -115,9 +115,29 @@ def build():
       <p class="lede reveal reveal-d2">Most organisations hire one vendor for IT, another for connectivity and a third for logistics, then spend their week coordinating them. We bring the three under one roof, with one plan and one team answerable for the result.</p>
     </div>
     <div class="practices">
-      {practice_card(1, "/it-consulting/", "it", "it", "IT Consulting", "Technology that runs quietly in the background and stays secure.", ["IT strategy and roadmaps", "Cybersecurity and NDPA readiness", "Cloud and Microsoft 365 / Google Workspace", "Managed support and helpdesk"], "Network cables connected to a server rack")}
+      {practice_card(1, "/it-consulting/", "it", "it", "IT Consulting", "Technology that runs quietly in the background and stays secure.", ["IT strategy and roadmaps", "ERP and procurement software", "Cybersecurity and NDPA readiness", "Cloud, Microsoft 365 and managed support"], "Network cables connected to a server rack")}
       {practice_card(2, "/telecom-consulting/", "telecom", "telecom", "Telecom Consulting", "Networks planned for Nigerian conditions and built to stay up.", ["Network planning and design", "Site rollout and project management", "Enterprise connectivity and redundancy", "Telecom cost and contract audits"], "Telecommunication towers at sunset")}
-      {practice_card(3, "/logistics-consulting/", "port", "logistics", "Logistics Consulting", "Supply chains that clear port, reach the shelf and show you where everything is.", ["Supply chain and distribution strategy", "Import, export and clearance advisory", "Warehouse and inventory design", "Fleet and last-mile optimisation"], "Aerial view of a container port")}
+      {practice_card(3, "/logistics-consulting/", "port", "logistics", "Logistics Consulting", "Supply chains that clear port, reach the shelf and show you where everything is.", ["Supply chain and distribution strategy", "Warehouse management systems", "Import, export and clearance advisory", "Fleet and last-mile optimisation"], "Aerial view of a container port")}
+    </div>
+  </div>
+</section>
+
+{clients_strip()}
+
+<section class="section bg-ivory" id="business-systems">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow reveal">Business systems</span>
+        <h2 class="reveal reveal-d1">ERP, warehouse and procurement systems, <em class="accent">implemented</em> properly.</h2>
+      </div>
+      <p class="lede reveal reveal-d2">Our 20-person operations team implements and supports the systems that run finance, inventory, warehouses and purchasing for seven client organisations, from planning through go-live and beyond.</p>
+    </div>
+    <div class="sys-grid">
+      <a class="sys reveal" href="/business-systems/"><span class="ico">{icon("erp")}</span><h3>ERP implementation</h3><p>Finance, inventory, sales and operations on one system, configured around how you really work.</p><span class="link-arrow">ERP services {icon("arrow")}</span></a>
+      <a class="sys reveal reveal-d1" href="/business-systems/"><span class="ico">{icon("warehouse")}</span><h3>Warehouse management systems</h3><p>Barcode accuracy and real-time stock across every warehouse, depot and cold room.</p><span class="link-arrow">WMS services {icon("arrow")}</span></a>
+      <a class="sys reveal reveal-d2" href="/business-systems/"><span class="ico">{icon("cart")}</span><h3>Procurement software</h3><p>Digital requisitions, approvals and purchase orders that control spend and leave a clean audit trail.</p><span class="link-arrow">Procurement services {icon("arrow")}</span></a>
+      <a class="sys reveal reveal-d3" href="/logistics-consulting/"><span class="ico">{icon("route")}</span><h3>Logistics consulting</h3><p>Supply chain design, clearance advisory and last-mile planning to go with the systems.</p><span class="link-arrow">Logistics services {icon("arrow")}</span></a>
     </div>
   </div>
 </section>
@@ -215,7 +235,7 @@ def build():
     return layout(
         path="/",
         title="Truevine Express Limited | IT, Telecom & Logistics Consulting in Lagos",
-        description="IT, telecom and logistics consulting in Lagos. We design, fix and run the infrastructure behind Nigerian businesses and agencies. Est. 2021, RC 1848110.",
+        description="Lagos consultancy for IT, telecom and logistics: ERP implementation, warehouse management systems, procurement software and infrastructure. Est. 2021, RC 1848110.",
         body=body, current="/",
         preload_img=(img_url("lagos", 1280), lagos_srcset),
         schema=[{"@context": "https://schema.org", "@type": "WebSite", "name": "Truevine Express Limited", "url": SITE + "/"}],

@@ -2,6 +2,13 @@ from lib import *
 
 
 def about():
+    def initials(n):
+        parts = [x for x in n.split() if x[0].isalpha()]
+        return parts[0][0] + parts[-1][0]
+    leaders = "".join(
+        f'<article class="leader reveal reveal-d{i % 3}"><span class="monogram" aria-hidden="true">{initials(n)}</span>'
+        f'<h3>{n}</h3><p class="role">{t}</p><p>{b}</p></article>'
+        for i, (n, t, b) in enumerate(LEADERS))
     credits = "".join(f'<li><a href="{u}" rel="noopener" target="_blank">{n}</a></li>' for _, (_, n, u) in IMAGES.items())
     body = f'''
 <section class="page-hero on-dark">
@@ -11,7 +18,7 @@ def about():
     <nav class="crumbs reveal" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>About</span></nav>
     <span class="eyebrow reveal">About Truevine Express</span>
     <h1 class="reveal reveal-d1">Deep roots in Lagos. <em class="accent">Reach</em> across Nigeria.</h1>
-    <p class="lede reveal reveal-d2">Truevine Express Limited is a Nigerian consultancy founded in {FOUNDED}. We bring IT, telecom and logistics expertise together so organisations can run without the constant interruptions that hold so many back.</p>
+    <p class="lede reveal reveal-d2">Truevine Express Limited is a Nigerian consultancy founded in {FOUNDED}. We bring IT, telecom, logistics and business systems expertise together so organisations can run without the constant interruptions that hold so many back.</p>
   </div>
 </section>
 
@@ -65,12 +72,27 @@ def about():
       <div class="fact"><small>Established</small><b>{FOUNDED}</b></div>
       <div class="fact"><small>Head office</small><b>Ikeja, Lagos</b></div>
       <div class="fact"><small>Practices</small><b>IT, Telecom, Logistics</b></div>
-      <div class="fact"><small>Coverage</small><b>Nationwide, Nigeria</b></div>
+      <div class="fact"><small>Delivery team</small><b>20 specialists</b></div>
     </div>
   </div>
 </section>
 
-{cta_band("Let us take a look at your operation.")}
+<section class="section" id="leadership">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow reveal">Our leadership</span>
+        <h2 class="reveal reveal-d1">The people <em class="accent">accountable</em> for your results.</h2>
+      </div>
+      <p class="lede reveal reveal-d2">Our leadership team brings together experience in technology, operations, finance and people management. We work closely with our teams and clients to deliver practical solutions across IT, telecom and logistics.</p>
+    </div>
+    <div class="leaders">{leaders}</div>
+  </div>
+</section>
+
+{clients_strip(dark=True)}
+
+{cta_band("Let&rsquo;s talk.", "Tell us about your business challenges and how we can help.", button="Contact us", eyebrow="Work with us")}
 
 <section class="section--tight" id="credits">
   <div class="wrap prose">
@@ -80,13 +102,13 @@ def about():
   </div>
 </section>
 '''
-    return layout(path="/about/", title="About Truevine Express Limited | Lagos IT, Telecom & Logistics Consultancy",
-                  description="Truevine Express Limited is a Lagos-based consultancy founded in 2021 (RC 1848110) bringing IT, telecom and logistics expertise together for Nigerian organisations.",
+    return layout(path="/about/", title="About Us & Leadership | Truevine Express Limited",
+                  description="Truevine Express Limited (RC 1848110), founded in Lagos in 2021: leadership team, values and the organisations we support across IT, telecom, logistics and ERP.",
                   body=body, current="/about/", schema=[breadcrumb_schema([("Home", "/"), ("About", "/about/")])])
 
 
 def contact():
-    chips = "".join(f'<label class="chip"><input type="checkbox" name="Service" value="{v}"><span>{v}</span></label>' for v in ("IT", "Telecom", "Logistics", "Not sure yet"))
+    chips = "".join(f'<label class="chip"><input type="checkbox" name="Service" value="{v}"><span>{v}</span></label>' for v in ("IT", "Telecom", "Logistics", "Business Systems", "Not sure yet"))
     body = f'''
 <section class="page-hero on-dark" style="padding-bottom:200px">
   {img("lagos_night", "Lagos bridge lit up at night", widths=(640, 960, 1280, 1920), eager=True)}
@@ -142,7 +164,7 @@ def contact():
     schema = {"@context": "https://schema.org", "@type": "ContactPage", "name": "Contact Truevine Express Limited", "url": SITE + "/contact/",
               "mainEntity": {"@id": SITE + "/#org"}}
     return layout(path="/contact/", title="Contact Truevine Express Limited | Book a Consultation in Lagos",
-                  description="Book a free 30-minute consultation with Truevine Express. Call 0703 590 9781, email truevineexpressltd@gmail.com or visit 92 Obafemi Awolowo Way, Ikeja, Lagos.",
+                  description="Book a free 30-minute consultation with Truevine Express. Call 0703 590 9781, email info@truevineexpressltd.com or visit 92 Obafemi Awolowo Way, Ikeja, Lagos.",
                   body=body, current="/contact/", schema=[schema, breadcrumb_schema([("Home", "/"), ("Contact", "/contact/")])])
 
 

@@ -72,8 +72,14 @@ for need in ("CNAME","robots.txt","favicon.ico","404.html",".nojekyll"):
     if not os.path.exists(os.path.join(ROOT,need)): fails.append(f"missing {need}")
 # brand facts must appear site-wide
 home=open(os.path.join(ROOT,"index.html")).read()
-for fact in ("0703&nbsp;590&nbsp;9781","+2347035909781","truevineexpressltd@gmail.com","RC 1848110","2021","92 Obafemi Awolowo Way"):
+for fact in ("0703&nbsp;590&nbsp;9781","+2347035909781","info@truevineexpressltd.com","ERP implementation","Warehouse management systems","Procurement software","Accion Microfinance Bank","RC 1848110","2021","92 Obafemi Awolowo Way"):
     if fact not in home: fails.append(f"home missing fact {fact}")
+about=open(os.path.join(ROOT,"about","index.html")).read()
+for fact in ("Bankole Adebayo","Attah Augustine Stephen","Temitope Benson","Francis Onyima","Eniola Dada",'id="leadership"'):
+    if fact not in about: fails.append(f"about missing {fact}")
+for pg in pages:
+    txt=open(pg).read().replace("formsubmit.co/ajax/truevineexpressltd@gmail.com","").replace("formsubmit.co/truevineexpressltd@gmail.com","")
+    if "truevineexpressltd@gmail.com" in txt: fails.append(f"{pg}: old Gmail address shown publicly")
 print(f"{len(pages)} pages checked")
 print("\n".join(fails) if fails else "ALL CHECKS PASSED")
 sys.exit(1 if fails else 0)

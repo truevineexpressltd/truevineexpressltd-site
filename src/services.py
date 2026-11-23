@@ -4,10 +4,10 @@ PAGES = {
     "it": dict(
         path="/it-consulting/", key="servers", alt="Aisle of server racks in a data centre", icon="it", form_value="IT",
         title="IT Consulting in Lagos | Truevine Express Limited",
-        description="IT strategy, cybersecurity and NDPA readiness, cloud migration, networks, managed support and IT procurement for Nigerian organisations. Truevine Express, Ikeja, Lagos.",
+        description="IT strategy, ERP and procurement software, cybersecurity, NDPA readiness, cloud migration, networks and managed IT support for Nigerian organisations.",
         eyebrow="IT Consulting",
         h1='Technology that works <em class="accent">quietly</em> and stays secure.',
-        lede="We plan, secure and support the systems your people use every day, from email and file sharing to networks, servers and business applications, so technology stops being the reason work stalls.",
+        lede="We plan, secure and support the systems your people use every day, from email and networks to ERP and procurement software, so technology stops being the reason work stalls.",
         intro_h='Your IT should support the business, <em class="accent">not slow it down.</em>',
         intro=["Many Nigerian organisations run on technology that was set up in a hurry: shared passwords, unpatched laptops, backups nobody has tested and a network that slows down every afternoon. It works until it does not, and then it is expensive.",
                "We assess what you have, fix what is risky, and build a roadmap that matches your budget. Then we can stay on to run it, or hand it over to your team with full documentation."],
@@ -21,7 +21,7 @@ PAGES = {
             ("cloud", "Cloud & workplace migration", "Move email, files and applications to Microsoft 365, Google Workspace or the cloud without losing data or a working day.", ["Migration planning and cutover", "Licensing right-sized to your team", "Staff onboarding and training"]),
             ("network", "Network & infrastructure", "Office networks and server rooms designed for speed, security and Nigerian power conditions.", ["LAN, Wi-Fi and structured cabling", "Firewalls and secure remote access", "UPS, inverter and solar backup for IT"]),
             ("headset", "Managed IT support", "A responsive helpdesk and proactive maintenance, so your staff can get on with their work.", ["Helpdesk with agreed response times", "Patching, monitoring and backups", "Monthly service reports"]),
-            ("box", "IT procurement & vendor management", "Genuine hardware and software at fair prices, delivered and configured, with warranties registered in your name.", ["Laptops, servers and networking gear", "Vendor comparison and negotiation", "Asset register and lifecycle tracking"]),
+            ("erp", "ERP & procurement software", "Select, implement and integrate the ERP and procurement systems that run finance, inventory and purchasing, delivered by our business systems team.", ["ERP selection and implementation", "Procure-to-pay and e-procurement software", "Integration with your existing systems"]),
         ],
         faq=[
             ("Do we need to replace all our equipment to work with you?", "No. We start with what you already have, keep what is fit for purpose and only recommend replacements where the risk or cost of keeping something is higher than replacing it."),
@@ -62,10 +62,10 @@ PAGES = {
     "logistics": dict(
         path="/logistics-consulting/", key="port", alt="Aerial view of a container yard at a port", icon="logistics", form_value="Logistics",
         title="Logistics Consulting in Lagos | Truevine Express Limited",
-        description="Supply chain strategy, import and customs clearance advisory, warehouse design, fleet and last-mile optimisation and logistics technology for businesses in Nigeria.",
+        description="Logistics consulting, warehouse management systems, customs clearance advisory, fleet and last-mile optimisation and supply chain technology for businesses in Nigeria.",
         eyebrow="Logistics Consulting",
         h1='Supply chains that clear port and <em class="accent">reach</em> the shelf.',
-        lede="We help importers, manufacturers, distributors and retailers move goods through Nigerian ports, warehouses and roads with less delay, lower cost and full visibility of where everything is.",
+        lede="We advise importers, manufacturers, distributors and cold-chain operators, and implement the warehouse and procurement systems that move goods through Nigerian ports, warehouses and roads with less delay, lower cost and full visibility.",
         intro_h='Every day in transit is <em class="accent">money on hold.</em>',
         intro=["Demurrage at Apapa and Tin Can, stock-outs in one depot while another is overstocked, trucks stuck on the same routes every day: these are not just operational headaches. They tie up cash and lose customers.",
                "We map your supply chain from supplier to customer, find where time and money are lost, and fix it with better processes, better partners and the right technology. Because we also do IT, the tracking systems we recommend actually connect to the rest of your business."],
@@ -76,7 +76,7 @@ PAGES = {
         services=[
             ("route", "Supply chain & distribution strategy", "Design the network of suppliers, warehouses and routes that best serves your customers at the lowest total cost.", ["End-to-end supply chain mapping", "Depot and distribution network design", "Cost-to-serve analysis"]),
             ("doc", "Import, export & clearance advisory", "Get documentation right for Nigeria Customs' B'Odogwu platform and keep cargo moving through the ports.", ["Form M and PAAR documentation review", "Coordination with licensed customs agents", "Demurrage and delay reduction"]),
-            ("warehouse", "Warehouse design & inventory", "Layouts, processes and systems that speed up picking and keep stock counts accurate.", ["Layout and slotting design", "Inventory policy and cycle counting", "Warehouse management system selection"]),
+            ("warehouse", "Warehouse management systems", "We implement warehouse management systems and redesign the processes around them, so picking is faster and stock counts stay accurate.", ["WMS selection, setup and go-live", "Layout, slotting and barcode scanning", "Inventory policy and cycle counting"]),
             ("logistics", "Fleet & last-mile optimisation", "Plan routes and schedules around Lagos traffic and get more deliveries out of every vehicle.", ["Route and load planning", "Vehicle tracking and telematics", "Driver and dispatch processes"]),
             ("chart", "Logistics technology & visibility", "Connect tracking, inventory and order systems so everyone works from the same live information.", ["Shipment and order tracking", "ERP and system integration", "Dashboards and KPIs"]),
             ("users", "3PL & carrier selection", "Choose and manage freight forwarders, haulage firms and third-party warehouses that perform.", ["Tender preparation and evaluation", "SLA and contract design", "Performance scorecards"]),
@@ -86,6 +86,35 @@ PAGES = {
             ("Can you help reduce demurrage charges?", "Yes. We look at where delays happen, from documentation to terminal and transport scheduling, and put fixes in place for each stage."),
             ("We are a growing distributor. Is this only for large companies?", "Not at all. Many of the biggest gains come from simple changes such as better route planning, stock rules and a basic tracking system. We scale the work to your size and budget."),
             ("Do you work outside Lagos?", "Yes. We support supply chains that run across Nigeria, from port to regional depots and final delivery."),
+        ],
+    ),
+    "systems": dict(
+        path="/business-systems/", key="warehouse", alt="Warehouse with shelving and stacked inventory", icon="erp", form_value="Business Systems",
+        title="ERP, Warehouse & Procurement Systems | Truevine Express Limited",
+        description="ERP implementation, warehouse management systems and procurement software for Nigerian businesses, delivered by a 20-person team. Truevine Express, Lagos.",
+        eyebrow="Business Systems",
+        h1='ERP, warehouse and procurement systems that <em class="accent">run</em> the business.',
+        lede="We select, implement and support the systems behind your finance, inventory, warehouses and purchasing, and we stay until your people are using them confidently.",
+        intro_h='Most system projects fail on people and process, <em class="accent">not software.</em>',
+        intro=["New ERP and warehouse systems often go live late, cost more than planned, and leave staff on spreadsheets anyway. Usually the software works; the processes, data and training were rushed.",
+               "Our operations team, led by our Chief Operating Officer, is a team of 20 that supports seven client organisations across ERP implementation, warehouse management, procurement software and logistics consulting. We map how you actually work, configure the system to fit, move your data cleanly and train your teams before go-live."],
+        side_key="team", side_alt="Project team working together around a table with laptops",
+        bullets=[("One integrated picture", "Finance, inventory, warehouse and purchasing working from the same numbers."),
+                 ("Go-lives that stick", "Clean data, trained users and support through the first months."),
+                 ("Independent advice", "We recommend the platform that fits your budget and scale, not the one with the best commission.")],
+        services=[
+            ("erp", "ERP implementation", "End-to-end implementation of enterprise resource planning for finance, inventory, sales and operations.", ["Requirements and platform selection", "Configuration, testing and go-live", "Reports and dashboards for management"]),
+            ("warehouse", "Warehouse management systems", "WMS rollouts that bring barcode accuracy and real-time stock visibility to every warehouse and depot.", ["Receiving, put-away, picking and dispatch", "Barcode and handheld scanner setup", "Multi-site and cold-chain inventory"]),
+            ("cart", "Procurement software", "Digital procure-to-pay that controls spend, speeds approvals and keeps a clear audit trail.", ["Requisitions, approvals and purchase orders", "Supplier onboarding and catalogues", "Spend visibility and audit trails"]),
+            ("sync", "Integration & data migration", "Connect new systems to what you already run and move historical data without losing history or accuracy.", ["Data cleansing and migration", "Integrations with accounting, banking and e-commerce", "Reconciliation before cutover"]),
+            ("graduation", "Training & change management", "Role-based training and floor support so staff actually adopt the new system.", ["Role-based training and user guides", "Super-user programme", "Hypercare support after go-live"]),
+            ("headset", "Support & optimisation", "Ongoing support, upgrades and improvements so the system keeps up with how your business grows.", ["Helpdesk with agreed response times", "Upgrades and new modules", "Quarterly process and system reviews"]),
+        ],
+        faq=[
+            ("Which ERP or warehouse system do you implement?", "We are vendor-neutral. We assess your size, budget, industry and existing systems, then recommend the platform that fits, whether a cloud ERP for a growing SME or a larger multi-site deployment."),
+            ("How long does an ERP or WMS implementation take?", "It depends on scope. A focused rollout for one site can take weeks; a multi-entity ERP takes longer. You get a phased plan with fixed milestones before any work starts."),
+            ("Can you work with the system we already have?", "Yes. Many engagements start by fixing or extending an existing ERP, WMS or procurement tool rather than replacing it."),
+            ("Who will actually do the work?", "Our operations team of 20 delivers the implementation, led by our Chief Operating Officer, with our Head of Technology responsible for solution design and integration."),
         ],
     ),
 }
@@ -118,7 +147,7 @@ def build(slug):
     <h1 class="reveal reveal-d1">{p["h1"]}</h1>
     <p class="lede reveal reveal-d2">{p["lede"]}</p>
     <div class="btn-row reveal reveal-d3">
-      <a class="btn" href="/contact/?service={p["form_value"]}">Discuss your project {icon("arrow")}</a>
+      <a class="btn" href="/contact/?service={p["form_value"].replace(" ", "%20")}">Discuss your project {icon("arrow")}</a>
       <a class="btn btn--ghost" href="tel:{PHONE_TEL}">{icon("phone")} {PHONE_DISPLAY}</a>
     </div>
   </div>
@@ -176,6 +205,7 @@ def build(slug):
   </div>
 </section>
 
+{clients_strip() if slug in ('systems', 'logistics') else ''}
 {cta_band()}
 '''
     svc_schema = {

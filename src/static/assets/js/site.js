@@ -86,7 +86,7 @@
           }
         })
         .catch(function () {
-          show("err", "We could not send your message just now. Please email truevineexpressltd@gmail.com or call 0703 590 9781 and we will pick it up straight away.");
+          show("err", "We could not send your message just now. Please email info@truevineexpressltd.com or call 0703 590 9781 and we will pick it up straight away.");
         })
         .finally(function () { btn.disabled = false; btn.innerHTML = btnLabel; });
     });

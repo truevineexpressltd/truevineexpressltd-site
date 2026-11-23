@@ -4,13 +4,15 @@ import json, html as _html
 SITE = "https://truevineexpressltd.com"
 PHONE_DISPLAY = "0703&nbsp;590&nbsp;9781"
 PHONE_TEL = "+2347035909781"
-EMAIL = "truevineexpressltd@gmail.com"
+EMAIL = "info@truevineexpressltd.com"
+# The contact form delivers through FormSubmit to the Gmail inbox it was activated for.
+FORM_TO = "truevineexpressltd@gmail.com"
 ADDRESS_LINES = ["92 Obafemi Awolowo Way, 2nd Floor", "Ikeja, Lagos, Nigeria"]
 RC = "RC 1848110"
 FOUNDED = "2021"
-FORM_AJAX = "https://formsubmit.co/ajax/" + EMAIL
-FORM_POST = "https://formsubmit.co/" + EMAIL
-ASSET_V = "2"
+FORM_AJAX = "https://formsubmit.co/ajax/" + FORM_TO
+FORM_POST = "https://formsubmit.co/" + FORM_TO
+ASSET_V = "4"
 
 # Unsplash imagery (free licence). key: (cdn id, photographer, photo page)
 IMAGES = {
@@ -24,6 +26,32 @@ IMAGES = {
     "warehouse": ("photo-1586528116311-ad8dd3c8310d", "Adrian Sulyok", "https://unsplash.com/photos/sczNLg6rrhQ"),
     "team": ("photo-1573164574572-cb89e39749b4", "Christina @ wocintechchat.com", "https://unsplash.com/photos/faEfWCdOKIg"),
 }
+
+
+LEADERS = [
+    ("Bankole Adebayo", "Chief Executive Officer",
+     "Mr. Adebayo leads our strategy, business development and client relationships, keeping the company focused on services that meet our clients' needs."),
+    ("Attah Augustine Stephen", "Chief Operating Officer",
+     "Mr. Stephen leads service delivery, quality and vendor partnerships. He oversees a team of 20 supporting seven client organisations across ERP implementation, warehouse management, procurement software and logistics consulting."),
+    ("Temitope Benson", "Chief Financial Officer",
+     "Mrs. Benson oversees financial planning, budgets and financial controls, helping us manage project costs and meet our commitments to clients."),
+    ("Francis Onyima", "Head of Technology",
+     "Mr. Onyima leads solution design, systems integration and technical quality, helping clients adopt technology that fits their operations and supports their growth."),
+    ("Eniola Dada", "Head of Human Resources",
+     "Ms. Dada oversees recruitment, staff development and daily administration, ensuring our teams have the support and resources to do their work well."),
+]
+
+CLIENTS = ["Khome Global Logistics", "Accion Microfinance Bank", "Errand360", "ColdHubs", "RapidBTS Limited", "Kennie-O Cold Chain"]
+
+
+def clients_strip(title="Organisations we have supported", dark=False):
+    names = "".join(f'<li>{n}</li>' for n in CLIENTS)
+    return f'''<section class="clients{' clients--dark on-dark' if dark else ''}" aria-label="{title}">
+  <div class="wrap">
+    <p class="clients-label reveal">{title}</p>
+    <ul class="clients-list reveal reveal-d1">{names}</ul>
+  </div>
+</section>'''
 
 
 def img_url(key, w, h=None, q=72):
@@ -79,6 +107,14 @@ _I = {
     "users": '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/>',
     "bolt": '<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
     "clock": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    "erp": '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4"/>',
+    "cart": '<path d="M3 4h2l2.4 11h11l2-8H6.3"/><circle cx="9.5" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/><path d="m10.5 10.5 2 2 3.5-3.5"/>',
+    "sync": '<path d="M4 12a8 8 0 0 1 13.7-5.7L20 8.6M20 4v4.6h-4.6"/><path d="M20 12a8 8 0 0 1-13.7 5.7L4 15.4M4 20v-4.6h4.6"/>',
+    "graduation": '<path d="M2 9.5 12 5l10 4.5-10 4.5z"/><path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5M22 9.5v5"/>',
+    "erp": '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4"/>',
+    "cart": '<path d="M3 4h2l2.4 11h11l2-8H6.3"/><circle cx="9.5" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/><path d="m10.5 10.5 2 2 3.5-3.5"/>',
+    "sync": '<path d="M4 12a8 8 0 0 1 13.7-5.7L20 8.6M20 4v4.6h-4.6"/><path d="M20 12a8 8 0 0 1-13.7 5.7L4 15.4M4 20v-4.6h4.6"/>',
+    "graduation": '<path d="M2 9.5 12 5l10 4.5-10 4.5z"/><path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5M22 9.5v5"/>',
     "warehouse": '<path d="M2 21V8l10-5 10 5v13"/><path d="M6 21v-9h12v9M6 15h12M6 18h12"/>',
 }
 
@@ -104,6 +140,7 @@ SERVICES_NAV = [
     ("/it-consulting/", "it", "IT Consulting", "Strategy, cybersecurity, cloud and managed support"),
     ("/telecom-consulting/", "telecom", "Telecom Consulting", "Network design, rollout and enterprise connectivity"),
     ("/logistics-consulting/", "logistics", "Logistics Consulting", "Supply chain, clearance, warehousing and fleet"),
+    ("/business-systems/", "erp", "Business Systems", "ERP, warehouse management and procurement software"),
 ]
 
 
@@ -137,8 +174,9 @@ def header(current):
   <a href="/it-consulting/">IT Consulting <small>02</small></a>
   <a href="/telecom-consulting/">Telecom Consulting <small>03</small></a>
   <a href="/logistics-consulting/">Logistics Consulting <small>04</small></a>
-  <a href="/about/">About <small>05</small></a>
-  <a href="/contact/">Contact <small>06</small></a>
+  <a href="/business-systems/">Business Systems <small>05</small></a>
+  <a href="/about/">About <small>06</small></a>
+  <a href="/contact/">Contact <small>07</small></a>
   <div class="mm-foot">
     <a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>
     <a href="mailto:{EMAIL}">{EMAIL}</a>
@@ -154,7 +192,7 @@ def footer():
     <div class="footer-top">
       <div class="footer-brand">
         {brand()}
-        <p>Lagos consultancy for IT, telecom and logistics. We design, fix and run the infrastructure Nigerian organisations depend on.</p>
+        <p>Lagos consultancy for IT, telecom, logistics and business systems. We implement ERP, warehouse and procurement software, and design, fix and run the infrastructure Nigerian organisations depend on.</p>
         {DIAMONDS}
       </div>
       <div class="footer-col">
@@ -163,12 +201,14 @@ def footer():
           <li><a href="/it-consulting/">IT Consulting</a></li>
           <li><a href="/telecom-consulting/">Telecom Consulting</a></li>
           <li><a href="/logistics-consulting/">Logistics Consulting</a></li>
+          <li><a href="/business-systems/">Business Systems (ERP, WMS)</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <p class="footer-h">Company</p>
         <ul>
           <li><a href="/about/">About us</a></li>
+          <li><a href="/about/#leadership">Leadership</a></li>
           <li><a href="/contact/">Contact</a></li>
           <li><a href="/privacy/">Privacy notice</a></li>
         </ul>
@@ -200,7 +240,7 @@ def org_schema():
         "url": SITE + "/",
         "logo": SITE + "/assets/img/logo-512.png",
         "image": SITE + "/assets/img/og.jpg",
-        "description": "Lagos consultancy for IT, telecom and logistics serving corporates, SMEs, government agencies, telecom operators and international firms entering Nigeria.",
+        "description": "Lagos consultancy for IT, telecom, logistics and business systems (ERP, warehouse management, procurement software) serving corporates, SMEs, government agencies, telecom operators and international firms entering Nigeria.",
         "telephone": PHONE_TEL,
         "email": EMAIL,
         "foundingDate": FOUNDED,
@@ -213,7 +253,8 @@ def org_schema():
             "addressCountry": "NG",
         },
         "areaServed": {"@type": "Country", "name": "Nigeria"},
-        "knowsAbout": ["IT consulting", "Cybersecurity", "Cloud migration", "Telecommunications network design",
+        "employee": [{"@type": "Person", "name": n, "jobTitle": t} for n, t, _ in LEADERS],
+        "knowsAbout": ["ERP implementation", "Warehouse management systems", "Procurement software", "IT consulting", "Cybersecurity", "Cloud migration", "Telecommunications network design",
                        "Enterprise connectivity", "Logistics consulting", "Supply chain management", "Customs clearance advisory"],
     }
 
@@ -272,17 +313,17 @@ def layout(*, path, title, description, body, current=None, schema=None, noindex
 '''
 
 
-def cta_band(title="Tell us what is slowing you down.", text="One conversation is usually enough to find the bottleneck. Book a free 30-minute consultation and leave with a clear next step, whether or not you hire us."):
+def cta_band(title="Tell us what is slowing you down.", text="One conversation is usually enough to find the bottleneck. Book a free 30-minute consultation and leave with a clear next step, whether or not you hire us.", button="Book a consultation", eyebrow="Start here"):
     return f'''<section class="section section--tight">
   <div class="wrap">
     <div class="cta-band on-dark reveal">
       {img("lagos_night", "", widths=(960, 1600), sizes="(max-width:1240px) 100vw, 1240px")}
       <div class="inner">
         <div>
-          <span class="eyebrow">Start here</span>
+          <span class="eyebrow">{eyebrow}</span>
           <h2>{title}</h2>
           <p>{text}</p>
-          <div class="btn-row" style="margin-top:32px"><a class="btn" href="/contact/">Book a consultation {icon("arrow")}</a></div>
+          <div class="btn-row" style="margin-top:32px"><a class="btn" href="/contact/">{button} {icon("arrow")}</a></div>
         </div>
         <div class="cta-contacts">
           <a href="tel:{PHONE_TEL}">{icon("phone")}<span><small>Call&nbsp;us</small><b>{PHONE_DISPLAY}</b></span></a>
