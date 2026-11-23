@@ -37,7 +37,7 @@ LEADERS = [
      "Mrs. Benson oversees financial planning, budgets and financial controls, helping us manage project costs and meet our commitments to clients."),
     ("Francis Onyima", "Head of Technology",
      "Mr. Onyima leads solution design, systems integration and technical quality, helping clients adopt technology that fits their operations and supports their growth."),
-    ("Eniola Dada", "Head of Human Resources",
+    ("Eniola Dada", "HR Director",
      "Ms. Dada oversees recruitment, staff development and daily administration, ensuring our teams have the support and resources to do their work well."),
 ]
 
