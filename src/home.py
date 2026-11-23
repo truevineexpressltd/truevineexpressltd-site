@@ -232,7 +232,7 @@ def build():
 '''
     return layout(
         path="/",
-        title="Truevine Express Limited | IT, Telecom & Logistics Consulting in Lagos",
+        title="Truevine Express Limited | IT, Telecom, Logistics & ERP Consulting, Lagos",
         description="Lagos consultancy for IT, telecom, logistics and business systems: ERP implementation, warehouse management and procurement software. Est. 2021, RC 1848110.",
         body=body, current="/",
         preload_img=(img_url("lagos", 1280), lagos_srcset),
