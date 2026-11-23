@@ -32,7 +32,7 @@ LEADERS = [
     ("Bankole Adebayo", "Chief Executive Officer",
      "Mr. Adebayo leads our strategy, business development and client relationships, keeping the company focused on services that meet our clients' needs."),
     ("Attah Augustine Stephen", "Chief Operating Officer",
-     "Mr. Stephen leads service delivery, quality and vendor partnerships. He oversees a team of 20 supporting seven client organisations across ERP implementation, warehouse management, procurement software and logistics consulting."),
+     "Mr. Stephen leads service delivery, quality and vendor partnerships, ensuring projects run smoothly and our solutions work well in clients' day-to-day operations. He oversees a team of 20 supporting seven client organisations across ERP implementation, warehouse management, procurement software and logistics consulting."),
     ("Temitope Benson", "Chief Financial Officer",
      "Mrs. Benson oversees financial planning, budgets and financial controls, helping us manage project costs and meet our commitments to clients."),
     ("Francis Onyima", "Head of Technology",
