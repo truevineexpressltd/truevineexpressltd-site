@@ -12,7 +12,7 @@ RC = "RC 1848110"
 FOUNDED = "2021"
 FORM_AJAX = "https://formsubmit.co/ajax/" + FORM_TO
 FORM_POST = "https://formsubmit.co/" + FORM_TO
-ASSET_V = "4"
+ASSET_V = "5"
 
 # Unsplash imagery (free licence). key: (cdn id, photographer, photo page)
 IMAGES = {
@@ -32,7 +32,7 @@ LEADERS = [
     ("Bankole Adebayo", "Chief Executive Officer",
      "Mr. Adebayo leads our strategy, business development and client relationships, keeping the company focused on services that meet our clients' needs."),
     ("Attah Augustine Stephen", "Chief Operating Officer",
-     "Mr. Stephen leads service delivery, quality and vendor partnerships, ensuring projects run smoothly and our solutions work well in clients' day-to-day operations. He oversees a team of 20 supporting seven client organisations across ERP implementation, warehouse management, procurement software and logistics consulting."),
+     "Mr. Stephen leads service delivery, quality and vendor partnerships, ensuring projects run smoothly and our solutions work well in clients' day-to-day operations. He oversees the team delivering our ERP implementation, warehouse management, procurement software and logistics consulting work."),
     ("Temitope Benson", "Chief Financial Officer",
      "Mrs. Benson oversees financial planning, budgets and financial controls, helping us manage project costs and meet our commitments to clients."),
     ("Francis Onyima", "Head of Technology",
@@ -130,9 +130,9 @@ BANDS = '<div class="bands" aria-hidden="true"><i></i><i></i><i></i></div>'
 
 
 def brand(light=True):
-    return ('<a class="brand" href="/" aria-label="Truevine Express Limited, home">'
-            '<img class="tree-light" src="/assets/img/tree-gold.svg" alt="" width="50" height="33">'
-            '<img class="tree-dark" src="/assets/img/tree-navy.svg" alt="" width="50" height="33">'
+    return ('<a class="brand" href="/">'
+            '<img class="tree-light" src="/assets/img/tree-gold.svg" alt="Truevine Express tree logo" width="50" height="33">'
+            '<img class="tree-dark" src="/assets/img/tree-navy.svg" alt="Truevine Express tree logo" width="50" height="33">'
             '<span class="brand-text"><span class="brand-name">Truevine Express</span><span class="brand-sub">LIMITED</span></span></a>')
 
 
@@ -201,7 +201,7 @@ def footer():
           <li><a href="/it-consulting/">IT Consulting</a></li>
           <li><a href="/telecom-consulting/">Telecom Consulting</a></li>
           <li><a href="/logistics-consulting/">Logistics Consulting</a></li>
-          <li><a href="/business-systems/">Business Systems (ERP, WMS)</a></li>
+          <li><a href="/business-systems/">Business Systems</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -317,7 +317,7 @@ def cta_band(title="Tell us what is slowing you down.", text="One conversation i
     return f'''<section class="section section--tight">
   <div class="wrap">
     <div class="cta-band on-dark reveal">
-      {img("lagos_night", "", widths=(960, 1600), sizes="(max-width:1240px) 100vw, 1240px")}
+      {img("lagos_night", "Lekki-Ikoyi Link Bridge in Lagos lit up at night", widths=(960, 1600), sizes="(max-width:1240px) 100vw, 1240px")}
       <div class="inner">
         <div>
           <span class="eyebrow">{eyebrow}</span>

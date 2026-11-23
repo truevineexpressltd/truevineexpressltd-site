@@ -3,43 +3,40 @@ from lib import _I
 
 
 def hero_viz():
-    nodes = [("IT", 270, 78, "it"), ("Telecom", 92, 392, "telecom"), ("Logistics", 448, 392, "logistics")]
-    hub = (270, 290)
-    paths = []
-    for i, (_, x, y, _) in enumerate(nodes):
-        mx, my = (x + hub[0]) / 2 + (40 if i == 0 else -30 if i == 1 else 30), (y + hub[1]) / 2 + (0 if i == 0 else -30)
-        paths.append(f"M{hub[0]},{hub[1]} Q{mx:.0f},{my:.0f} {x},{y}")
-    rim = ["M270,78 Q120,150 92,392", "M92,392 Q270,500 448,392", "M448,392 Q420,150 270,78"]
-    out = ['<svg viewBox="0 0 540 540" role="img" aria-label="Diagram: IT, telecom and logistics connected to your operation">',
+    cx, cy, R = 270, 290, 205
+    nodes = [("IT", cx, cy - R, "it"), ("Telecom", cx - R, cy, "telecom"),
+             ("Logistics", cx + R, cy, "logistics"), ("Business Systems", cx, cy + R, "erp")]
+    out = ['<svg viewBox="0 0 540 600" role="img" aria-label="Diagram: IT, telecom, logistics and business systems connected to your operation">',
            '<defs><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F8CD6D" stop-opacity=".35"/><stop offset="1" stop-color="#F8CD6D" stop-opacity="0"/></radialGradient>'
            '<linearGradient id="ln" x1="0" x2="1"><stop offset="0" stop-color="#D9B253" stop-opacity=".9"/><stop offset="1" stop-color="#3D6EB1" stop-opacity=".6"/></linearGradient></defs>']
-    for r in (130, 205, 262):
-        out.append(f'<circle cx="270" cy="290" r="{r}" fill="none" stroke="#fff" stroke-opacity=".07" stroke-dasharray="2 6"/>')
-    out.append('<circle cx="270" cy="290" r="150" fill="url(#glow)"/>')
-    for i, d in enumerate(rim):
-        out.append(f'<path id="r{i}" d="{d}" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="1"/>')
-    for i, d in enumerate(paths):
-        out.append(f'<path id="p{i}" d="{d}" fill="none" stroke="url(#ln)" stroke-width="1.4" stroke-dasharray="4 5"><animate attributeName="stroke-dashoffset" from="0" to="-90" dur="6s" repeatCount="indefinite"/></path>')
-    # travelling packets
-    for i in range(3):
+    for r in (130, 262):
+        out.append(f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="#fff" stroke-opacity=".07" stroke-dasharray="2 6"/>')
+    out.append(f'<circle cx="{cx}" cy="{cy}" r="150" fill="url(#glow)"/>')
+    out.append(f'<path id="rim" d="M{cx},{cy - R} A{R},{R} 0 1,1 {cx - 0.01},{cy - R}" fill="none" stroke="#fff" stroke-opacity=".16"/>')
+    bends = [(40, 0), (0, -40), (0, 40), (-40, 0)]
+    for i, (_, x, y, _) in enumerate(nodes):
+        mx, my = (x + cx) / 2 + bends[i][0], (y + cy) / 2 + bends[i][1]
+        out.append(f'<path id="p{i}" d="M{cx},{cy} Q{mx:.0f},{my:.0f} {x},{y}" fill="none" stroke="url(#ln)" stroke-width="1.4" stroke-dasharray="4 5"><animate attributeName="stroke-dashoffset" from="0" to="-90" dur="6s" repeatCount="indefinite"/></path>')
+    for i in range(4):
         for k, delay in enumerate((0, 1.6)):
-            out.append(f'<circle r="3.6" fill="#F8CD6D"><animateMotion dur="3.2s" begin="{i*0.7+delay}s" repeatCount="indefinite" keyPoints="{"0;1" if k==0 else "1;0"}" keyTimes="0;1" calcMode="linear"><mpath href="#p{i}"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="3.2s" begin="{i*0.7+delay}s" repeatCount="indefinite"/></circle>')
-        out.append(f'<circle r="2.6" fill="#A3BDD6"><animateMotion dur="7s" begin="{i*1.3}s" repeatCount="indefinite"><mpath href="#r{i}"/></animateMotion></circle>')
-    # hub
-    out.append('<circle cx="270" cy="290" r="62" fill="none" stroke="#F8CD6D" stroke-opacity=".5"><animate attributeName="r" values="62;92" dur="3s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".55;0" dur="3s" repeatCount="indefinite"/></circle>')
-    out.append('<circle cx="270" cy="290" r="62" fill="#F8CD6D"/>')
-    out.append('<image href="/assets/img/tree-navy.svg" x="236" y="256" width="68" height="45"/>')
-    out.append('<text x="270" y="327" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" font-weight="600" letter-spacing="1.2" fill="#05192F">YOUR OPERATION</text>')
+            out.append(f'<circle r="3.6" fill="#F8CD6D"><animateMotion dur="3.2s" begin="{i*0.6+delay}s" repeatCount="indefinite" keyPoints="{"0;1" if k==0 else "1;0"}" keyTimes="0;1" calcMode="linear"><mpath href="#p{i}"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="3.2s" begin="{i*0.6+delay}s" repeatCount="indefinite"/></circle>')
+    for i in range(3):
+        out.append(f'<circle r="2.6" fill="#A3BDD6"><animateMotion dur="12s" begin="{i*4}s" repeatCount="indefinite"><mpath href="#rim"/></animateMotion></circle>')
+    out.append(f'<circle cx="{cx}" cy="{cy}" r="62" fill="none" stroke="#F8CD6D" stroke-opacity=".5"><animate attributeName="r" values="62;92" dur="3s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".55;0" dur="3s" repeatCount="indefinite"/></circle>')
+    out.append(f'<circle cx="{cx}" cy="{cy}" r="62" fill="#F8CD6D"/>')
+    out.append(f'<image href="/assets/img/tree-navy.svg" x="{cx-34}" y="{cy-34}" width="68" height="45"/>')
+    out.append(f'<text x="{cx}" y="{cy+37}" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" font-weight="600" letter-spacing="1.2" fill="#05192F">YOUR OPERATION</text>')
     for label, x, y, ic in nodes:
-        out.append(f'<g><circle cx="{x}" cy="{y}" r="38" fill="#08254A" stroke="#D9B253" stroke-opacity=".7"/>'
+        ly = y + 62 if label != "IT" else y - 50
+        out.append(f'<g><circle cx="{x}" cy="{y}" r="36" fill="#08254A" stroke="#D9B253" stroke-opacity=".7"/>'
                    f'<g transform="translate({x-14},{y-14}) scale(1.1667)" fill="none" stroke="#F8CD6D" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">{_I[ic]}</g>'
-                   f'<text x="{x}" y="{y+62}" text-anchor="middle" font-family="Poppins,sans-serif" font-size="14" font-weight="500" fill="#fff" fill-opacity=".9" letter-spacing=".5">{label}</text></g>')
+                   f'<text x="{x}" y="{ly}" text-anchor="middle" font-family="Poppins,sans-serif" font-size="14" font-weight="500" fill="#fff" fill-opacity=".9" letter-spacing=".5">{label}</text></g>')
     out.append('</svg>')
     return "".join(out)
 
 
 def converge_viz():
-    return '''<svg viewBox="0 0 520 520" role="img" aria-label="Diagram: IT, telecom and logistics overlap, and Truevine works where they meet">
+    return '''<svg viewBox="0 0 520 520" role="img" aria-label="Diagram: IT, telecom and logistics overlap, and Truevine works where they meet, with business systems tying them together">
 <defs><radialGradient id="cg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F8CD6D" stop-opacity=".9"/><stop offset="1" stop-color="#AF8A2C" stop-opacity=".85"/></radialGradient></defs>
 <g fill="none" stroke-width="1.5">
 <circle cx="260" cy="190" r="140" stroke="#A3BDD6" stroke-opacity=".55" fill="#3D6EB1" fill-opacity=".10"></circle>
@@ -66,9 +63,9 @@ def practice_card(n, href, key, ic, title, text, items, alt):
     <h3>{title}</h3>
     <p>{text}</p>
     <ul>{lis}</ul>
-    <span class="more">Explore {title.split()[0]} {icon("arrow")}</span>
+    <span class="more" aria-hidden="true">Explore {title.split()[0] if title != "Business Systems" else "systems"} {icon("arrow")}</span>
   </div>
-  <a class="cover" href="{href}" aria-label="{title}"></a>
+  <a class="cover" href="{href}"><span class="sr-only">Explore {title}</span></a>
 </article>'''
 
 
@@ -80,7 +77,7 @@ def build():
   {BANDS}
   <div class="wrap">
     <div>
-      <span class="eyebrow reveal">IT &middot; Telecom &middot; Logistics &middot; Lagos</span>
+      <span class="eyebrow reveal">IT &middot; Telecom &middot; Logistics &middot; Business Systems</span>
       <h1 class="reveal reveal-d1">We connect the systems that <em class="accent">move</em> Nigerian business.</h1>
       <p class="lede reveal reveal-d2">Truevine Express is a Lagos consultancy for IT, telecom and logistics. We implement ERP, warehouse and procurement systems, and we design, fix and run the infrastructure behind your operation, so the network stays up, the data stays safe and the goods arrive on time.</p>
       <div class="btn-row reveal reveal-d3">
@@ -101,7 +98,7 @@ def build():
     <div class="cred"><b>Since {FOUNDED}</b><span>Operating from Lagos</span></div>
     <div class="cred"><b>{RC}</b><span>Registered with the CAC</span></div>
     <div class="cred"><b>Team of 20</b><span>Delivery and operations specialists</span></div>
-    <div class="cred"><b>7 client organisations</b><span>Supported across ERP, WMS and logistics</span></div>
+    <div class="cred"><b>ERP, WMS &amp; procurement</b><span>Implemented and supported</span></div>
   </div>
 </section>
 
@@ -110,14 +107,15 @@ def build():
     <div class="section-head">
       <div>
         <span class="eyebrow reveal">What we do</span>
-        <h2 class="reveal reveal-d1">Three practices. <em class="accent">One</em> accountable partner.</h2>
+        <h2 class="reveal reveal-d1">Four practices. <em class="accent">One</em> accountable partner.</h2>
       </div>
-      <p class="lede reveal reveal-d2">Most organisations hire one vendor for IT, another for connectivity and a third for logistics, then spend their week coordinating them. We bring the three under one roof, with one plan and one team answerable for the result.</p>
+      <p class="lede reveal reveal-d2">Most organisations hire one vendor for IT, another for connectivity, a third for logistics and a fourth for their ERP, then spend their week coordinating them. We bring all four under one roof, with one plan and one team answerable for the result.</p>
     </div>
     <div class="practices">
       {practice_card(1, "/it-consulting/", "it", "it", "IT Consulting", "Technology that runs quietly in the background and stays secure.", ["IT strategy and roadmaps", "ERP and procurement software", "Cybersecurity and NDPA readiness", "Cloud, Microsoft 365 and managed support"], "Network cables connected to a server rack")}
       {practice_card(2, "/telecom-consulting/", "telecom", "telecom", "Telecom Consulting", "Networks planned for Nigerian conditions and built to stay up.", ["Network planning and design", "Site rollout and project management", "Enterprise connectivity and redundancy", "Telecom cost and contract audits"], "Telecommunication towers at sunset")}
       {practice_card(3, "/logistics-consulting/", "port", "logistics", "Logistics Consulting", "Supply chains that clear port, reach the shelf and show you where everything is.", ["Supply chain and distribution strategy", "Warehouse management systems", "Import, export and clearance advisory", "Fleet and last-mile optimisation"], "Aerial view of a container port")}
+      {practice_card(4, "/business-systems/", "warehouse", "erp", "Business Systems", "ERP, warehouse and procurement software, implemented and supported by our operations team.", ["ERP implementation", "Warehouse management systems", "Procurement software", "Integration, training and support"], "Warehouse aisle with shelving and stock")}
     </div>
   </div>
 </section>
@@ -131,7 +129,7 @@ def build():
         <span class="eyebrow reveal">Business systems</span>
         <h2 class="reveal reveal-d1">ERP, warehouse and procurement systems, <em class="accent">implemented</em> properly.</h2>
       </div>
-      <p class="lede reveal reveal-d2">Our 20-person operations team implements and supports the systems that run finance, inventory, warehouses and purchasing for seven client organisations, from planning through go-live and beyond.</p>
+      <p class="lede reveal reveal-d2">Our operations team implements and supports the systems that run finance, inventory, warehouses and purchasing, from planning through go-live and beyond.</p>
     </div>
     <div class="sys-grid">
       <a class="sys reveal" href="/business-systems/"><span class="ico">{icon("erp")}</span><h3>ERP implementation</h3><p>Finance, inventory, sales and operations on one system, configured around how you really work.</p><span class="link-arrow">ERP services {icon("arrow")}</span></a>
@@ -146,7 +144,7 @@ def build():
   <div class="wrap converge">
     <div class="converge-visual reveal">{converge_viz()}</div>
     <div>
-      <span class="eyebrow reveal">Why the three belong together</span>
+      <span class="eyebrow reveal">Why one partner</span>
       <h2 class="reveal reveal-d1">In Nigeria, systems fail <em class="accent">together.</em></h2>
       <p class="lede reveal reveal-d2">A fibre cut takes down the order system. A power dip corrupts the warehouse database. A clearance delay ties up stock you already paid for. These problems cross departments, so the fix has to as well.</p>
       <div class="points">
@@ -165,7 +163,7 @@ def build():
         <span class="eyebrow reveal">Who we serve</span>
         <h2 class="reveal reveal-d1">Built for organisations that <em class="accent">cannot</em> afford downtime.</h2>
       </div>
-      <p class="lede reveal reveal-d2">From a 20-person SME to a federal agency, the same rule applies: if the network, the systems or the deliveries stop, so does the business.</p>
+      <p class="lede reveal reveal-d2">From a growing SME to a federal agency, the same rule applies: if the network, the systems or the deliveries stop, so does the business.</p>
     </div>
     <div class="audience">
       <div class="aud reveal"><span class="ico">{icon("building", "1.2")}</span><h3>Corporates &amp; SMEs</h3><p>Banks, retail, manufacturing, energy and professional firms that need dependable IT and a supply chain they can see into.</p></div>
@@ -235,7 +233,7 @@ def build():
     return layout(
         path="/",
         title="Truevine Express Limited | IT, Telecom & Logistics Consulting in Lagos",
-        description="Lagos consultancy for IT, telecom and logistics: ERP implementation, warehouse management systems, procurement software and infrastructure. Est. 2021, RC 1848110.",
+        description="Lagos consultancy for IT, telecom, logistics and business systems: ERP implementation, warehouse management and procurement software. Est. 2021, RC 1848110.",
         body=body, current="/",
         preload_img=(img_url("lagos", 1280), lagos_srcset),
         schema=[{"@context": "https://schema.org", "@type": "WebSite", "name": "Truevine Express Limited", "url": SITE + "/"}],

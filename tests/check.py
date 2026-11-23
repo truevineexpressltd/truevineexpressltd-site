@@ -9,12 +9,14 @@ fails, titles, descs = [], {}, {}
 
 class P(HTMLParser):
     def __init__(s):
-        super().__init__(); s.links=[]; s.imgs=[]; s.ids=set(); s.title=""; s._t=False; s.meta={}; s.ld=[]; s._ld=False; s.h1=0; s.lang=None; s.labels=set(); s.inputs=[]
+        super().__init__(); s.anchors=[]; s._a=None; s.links=[]; s.imgs=[]; s.ids=set(); s.title=""; s._t=False; s.meta={}; s.ld=[]; s._ld=False; s.h1=0; s.lang=None; s.labels=set(); s.inputs=[]
     def handle_starttag(s, t, a):
         a=dict(a)
         if "id" in a: s.ids.add(a["id"])
         if t=="html": s.lang=a.get("lang")
-        if t=="a" and "href" in a: s.links.append(a["href"])
+        if t=="a" and "href" in a:
+            s.links.append(a["href"]); s._a={"href":a["href"],"text":""}
+        if t=="img" and s._a is not None: s._a["text"]+=a.get("alt","")
         if t=="link" and a.get("rel") in ("stylesheet","icon","apple-touch-icon","manifest","canonical"): s.links.append(a["href"])
         if t=="script" and "src" in a: s.links.append(a["src"])
         if t=="img": s.imgs.append(a); s.links.append(a.get("src",""))
@@ -26,9 +28,11 @@ class P(HTMLParser):
         if t=="label" and "for" in a: s.labels.add(a["for"])
         if t in ("input","select","textarea") and a.get("type") not in ("hidden","checkbox") and "hp" not in (a.get("class") or ""): s.inputs.append(a.get("id"))
     def handle_endtag(s,t):
+        if t=="a" and s._a is not None: s.anchors.append(s._a); s._a=None
         if t=="title": s._t=False
         if t=="script": s._ld=False
     def handle_data(s,d):
+        if s._a is not None: s._a["text"]+=d
         if s._t: s.title+=d
         if s._ld: s.ld.append(d)
 
@@ -48,7 +52,9 @@ for pg in pages:
         f=resolve(pg,h)
         if f and not os.path.exists(f): fails.append(f"{rel}: broken link {h}")
     for i in p.imgs:
-        if "alt" not in i: fails.append(f"{rel}: img without alt {i.get('src')}")
+        if not (i.get("alt") or "").strip(): fails.append(f"{rel}: img without alt text {i.get('src')}")
+    for a in p.anchors:
+        if not a["text"].strip(): fails.append(f"{rel}: link without text {a['href']}")
     if p.h1!=1: fails.append(f"{rel}: {p.h1} h1 elements")
     if not p.lang: fails.append(f"{rel}: missing lang")
     t=p.title.strip(); d=p.meta.get("description","")
@@ -80,6 +86,13 @@ for fact in ("Bankole Adebayo","Attah Augustine Stephen","Temitope Benson","Fran
 for pg in pages:
     txt=open(pg).read().replace("formsubmit.co/ajax/truevineexpressltd@gmail.com","").replace("formsubmit.co/truevineexpressltd@gmail.com","")
     if "truevineexpressltd@gmail.com" in txt: fails.append(f"{pg}: old Gmail address shown publicly")
+for pg in pages:
+    txt=open(pg).read()
+    for banned in ("seven client","7 client","team of 20","20-person","20 specialists","(ERP, WMS)","Fields marked optional","Three practices","three belong together"):
+        if banned in txt: fails.append(f"{pg}: contains '{banned}'")
+home_txt=open(os.path.join(ROOT,"index.html")).read()
+if home_txt.count('class="practice ')!=4: fails.append("home: expected 4 practice cards")
+if "Team of 20" not in home_txt: fails.append("home: Team of 20 credential missing")
 print(f"{len(pages)} pages checked")
 print("\n".join(fails) if fails else "ALL CHECKS PASSED")
 sys.exit(1 if fails else 0)

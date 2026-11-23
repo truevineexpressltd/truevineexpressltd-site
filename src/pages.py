@@ -71,8 +71,8 @@ def about():
       <div class="fact"><small>CAC registration</small><b>{RC}</b></div>
       <div class="fact"><small>Established</small><b>{FOUNDED}</b></div>
       <div class="fact"><small>Head office</small><b>Ikeja, Lagos</b></div>
-      <div class="fact"><small>Practices</small><b>IT, Telecom, Logistics</b></div>
-      <div class="fact"><small>Delivery team</small><b>20 specialists</b></div>
+      <div class="fact"><small>Practices</small><b>IT, Telecom, Logistics, Business Systems</b></div>
+      <div class="fact"><small>Coverage</small><b>Nationwide, Nigeria</b></div>
     </div>
   </div>
 </section>
@@ -125,7 +125,7 @@ def contact():
   <div class="wrap contact-grid">
     <div class="form-card reveal">
       <h2>Request a consultation</h2>
-      <p>Fields marked optional can be skipped. Everything else helps us prepare properly for the call.</p>
+      <p>Tell us a little about your organisation and what you need. Every field except the service options is required, so we can prepare properly for the call.</p>
       <form id="consult-form" class="form" action="{FORM_POST}" method="POST" data-ajax="{FORM_AJAX}">
         <input type="hidden" name="_subject" value="New consultation request from truevineexpressltd.com">
         <input type="hidden" name="_template" value="table">
@@ -136,7 +136,7 @@ def contact():
         <div class="field"><label for="f-org">Organisation</label><input id="f-org" type="text" name="Organisation" autocomplete="organization" required></div>
         <div class="field"><label for="f-email">Work email</label><input id="f-email" type="email" name="email" autocomplete="email" required></div>
         <div class="field"><label for="f-phone">Phone</label><input id="f-phone" type="tel" name="Phone" autocomplete="tel" inputmode="tel" minlength="7" maxlength="20" required></div>
-        <div class="field field--full"><label>What do you need help with? <span class="opt">(choose any)</span></label><div class="chips">{chips}</div></div>
+        <div class="field field--full"><label>What do you need help with? <span class="opt">(optional, choose any)</span></label><div class="chips">{chips}</div></div>
         <div class="field field--full"><label for="f-type">Type of organisation</label>
           <select id="f-type" name="Organisation type" required>
             <option value="">Select one</option>
@@ -156,7 +156,8 @@ def contact():
       <div class="info reveal reveal-d1"><small>Call</small><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a><p class="sub">Speak to a consultant directly.</p></div>
       <div class="info reveal reveal-d2"><small>Email</small><a href="mailto:{EMAIL}">{EMAIL}</a><p class="sub">Send documents, tenders or RFQs here.</p></div>
       <div class="info reveal reveal-d3"><small>Office</small><p>{ADDRESS_LINES[0]}<br>{ADDRESS_LINES[1]}</p><p class="sub"><a href="https://www.google.com/maps/dir/?api=1&amp;destination=92+Obafemi+Awolowo+Way+Ikeja+Lagos" target="_blank" rel="noopener" class="link-arrow" style="font-size:.9rem">Get directions {icon("arrow")}</a></p></div>
-      <div class="map reveal reveal-d4"><iframe title="Map showing 92 Obafemi Awolowo Way, Ikeja, Lagos" src="https://maps.google.com/maps?q=92%20Obafemi%20Awolowo%20Way%2C%20Ikeja%2C%20Lagos&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <div class="map reveal reveal-d4"><iframe title="Google Map of our office at 92 Obafemi Awolowo Way, Ikeja, Lagos" src="https://maps.google.com/maps?q=92%20Obafemi%20Awolowo%20Way%2C%20Ikeja%2C%20Lagos&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <p class="map-note reveal reveal-d4"><a href="https://www.google.com/maps/search/?api=1&amp;query=92+Obafemi+Awolowo+Way+Ikeja+Lagos" target="_blank" rel="noopener">View 92 Obafemi Awolowo Way, Ikeja on Google Maps</a></p>
     </aside>
   </div>
 </section>
