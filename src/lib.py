@@ -12,7 +12,7 @@ RC = "RC 1848110"
 FOUNDED = "2021"
 FORM_AJAX = "https://formsubmit.co/ajax/" + FORM_TO
 FORM_POST = "https://formsubmit.co/" + FORM_TO
-ASSET_V = "5"
+ASSET_V = "6"
 
 # Unsplash imagery (free licence). key: (cdn id, photographer, photo page)
 IMAGES = {
@@ -328,7 +328,7 @@ def cta_band(title="Tell us what is slowing you down.", text="One conversation i
         <div class="cta-contacts">
           <a href="tel:{PHONE_TEL}">{icon("phone")}<span><small>Call&nbsp;us</small><b>{PHONE_DISPLAY}</b></span></a>
           <a href="mailto:{EMAIL}">{icon("mail")}<span><small>Email</small><b>{EMAIL}</b></span></a>
-          <a href="/contact/#visit">{icon("pin")}<span><small>Visit</small><b>92 Obafemi Awolowo Way, Ikeja</b></span></a>
+          <a href="/contact/#visit">{icon("pin")}<span><small>Visit</small><b>92 Obafemi Awolowo Way, 2nd Floor, Ikeja</b></span></a>
         </div>
       </div>
     </div>

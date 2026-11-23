@@ -93,6 +93,22 @@ for pg in pages:
 home_txt=open(os.path.join(ROOT,"index.html")).read()
 if home_txt.count('class="practice ')!=4: fails.append("home: expected 4 practice cards")
 if "Team of 20" not in home_txt: fails.append("home: Team of 20 credential missing")
+# Service ownership: software lives under Business Systems only
+import html as _h
+def section(txt, start, end):
+    i=txt.find(start); return txt[i:txt.find(end,i)] if i>=0 else ""
+cards={m.group(1):m.group(2) for m in re.finditer(r'<article class="practice[^"]*">.*?<h3>(.*?)</h3>.*?<ul>(.*?)</ul>', home_txt, re.S)}
+if re.search(r"ERP|procurement software", cards.get("IT Consulting",""), re.I): fails.append("home IT card lists ERP/procurement software")
+if re.search(r"warehouse management|WMS", cards.get("Logistics Consulting",""), re.I): fails.append("home Logistics card lists WMS")
+for page, pat in (("it-consulting", r"ERP|procurement software"), ("logistics-consulting", r"warehouse management system|WMS")):
+    t=open(os.path.join(ROOT,page,"index.html")).read()
+    heads=" ".join(re.findall(r'<article class="svc[^"]*">.*?<h3>(.*?)</h3>.*?</ul>', t, re.S)+re.findall(r'<article class="svc[^"]*">.*?<ul>(.*?)</ul>', t, re.S))
+    if re.search(pat, heads, re.I): fails.append(f"{page}: service cards overlap Business Systems ({pat})")
+# Address always includes 2nd Floor in visible text
+for pg in pages:
+    t=_h.unescape(re.sub(r"<[^>]+>"," ",open(pg).read()))
+    for m in re.finditer(r"92 Obafemi Awolowo Way(?!,?\s*2nd Floor)", t):
+        fails.append(f"{pg}: address without 2nd Floor: ...{t[m.start():m.start()+60]!r}")
 print(f"{len(pages)} pages checked")
 print("\n".join(fails) if fails else "ALL CHECKS PASSED")
 sys.exit(1 if fails else 0)

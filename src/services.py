@@ -4,10 +4,10 @@ PAGES = {
     "it": dict(
         path="/it-consulting/", key="servers", alt="Aisle of server racks in a data centre", icon="it", form_value="IT",
         title="IT Consulting in Lagos | Truevine Express Limited",
-        description="IT strategy, ERP and procurement software, cybersecurity, NDPA readiness, cloud migration, networks and managed IT support for Nigerian organisations.",
+        description="IT strategy, cybersecurity and NDPA readiness, cloud migration, networks, backup and managed IT support for Nigerian organisations. Truevine Express, Lagos.",
         eyebrow="IT Consulting",
         h1='Technology that works <em class="accent">quietly</em> and stays secure.',
-        lede="We plan, secure and support the systems your people use every day, from email and networks to ERP and procurement software, so technology stops being the reason work stalls.",
+        lede="We plan, secure and support the technology your people use every day, from email and file sharing to networks, devices and servers, so technology stops being the reason work stalls.",
         intro_h='Your IT should support the business, <em class="accent">not slow it down.</em>',
         intro=["Many Nigerian organisations run on technology that was set up in a hurry: shared passwords, unpatched laptops, backups nobody has tested and a network that slows down every afternoon. It works until it does not, and then it is expensive.",
                "We assess what you have, fix what is risky, and build a roadmap that matches your budget. Then we can stay on to run it, or hand it over to your team with full documentation."],
@@ -21,7 +21,7 @@ PAGES = {
             ("cloud", "Cloud & workplace migration", "Move email, files and applications to Microsoft 365, Google Workspace or the cloud without losing data or a working day.", ["Migration planning and cutover", "Licensing right-sized to your team", "Staff onboarding and training"]),
             ("network", "Network & infrastructure", "Office networks and server rooms designed for speed, security and Nigerian power conditions.", ["LAN, Wi-Fi and structured cabling", "Firewalls and secure remote access", "UPS, inverter and solar backup for IT"]),
             ("headset", "Managed IT support", "A responsive helpdesk and proactive maintenance, so your staff can get on with their work.", ["Helpdesk with agreed response times", "Patching, monitoring and backups", "Monthly service reports"]),
-            ("erp", "ERP & procurement software", "Select, implement and integrate the ERP and procurement systems that run finance, inventory and purchasing, delivered by our business systems team.", ["ERP selection and implementation", "Procure-to-pay and e-procurement software", "Integration with your existing systems"]),
+            ("shield", "Backup & business continuity", "Tested backups and recovery plans so a failed server, ransomware or a flood does not stop the business.", ["Automated, offsite and cloud backups", "Recovery testing on a schedule", "Business continuity and disaster recovery plans"]),
         ],
         faq=[
             ("Do we need to replace all our equipment to work with you?", "No. We start with what you already have, keep what is fit for purpose and only recommend replacements where the risk or cost of keeping something is higher than replacing it."),
@@ -62,10 +62,10 @@ PAGES = {
     "logistics": dict(
         path="/logistics-consulting/", key="port", alt="Aerial view of a container yard at a port", icon="logistics", form_value="Logistics",
         title="Logistics Consulting in Lagos | Truevine Express Limited",
-        description="Logistics consulting, warehouse management systems, customs clearance advisory, fleet and last-mile optimisation and supply chain technology for businesses in Nigeria.",
+        description="Logistics consulting: supply chain strategy, warehouse design, customs clearance advisory, fleet and last-mile optimisation for businesses in Nigeria.",
         eyebrow="Logistics Consulting",
         h1='Supply chains that clear port and <em class="accent">reach</em> the shelf.',
-        lede="We advise importers, manufacturers, distributors and cold-chain operators, and implement the warehouse and procurement systems that move goods through Nigerian ports, warehouses and roads with less delay, lower cost and full visibility.",
+        lede="We help importers, manufacturers, distributors and cold-chain operators move goods through Nigerian ports, warehouses and roads with less delay, lower cost and full visibility of where everything is.",
         intro_h='Every day in transit is <em class="accent">money on hold.</em>',
         intro=["Demurrage at Apapa and Tin Can, stock-outs in one depot while another is overstocked, trucks stuck on the same routes every day: these are not just operational headaches. They tie up cash and lose customers.",
                "We map your supply chain from supplier to customer, find where time and money are lost, and fix it with better processes, better partners and the right technology. Because we also do IT, the tracking systems we recommend actually connect to the rest of your business."],
@@ -76,7 +76,7 @@ PAGES = {
         services=[
             ("route", "Supply chain & distribution strategy", "Design the network of suppliers, warehouses and routes that best serves your customers at the lowest total cost.", ["End-to-end supply chain mapping", "Depot and distribution network design", "Cost-to-serve analysis"]),
             ("doc", "Import, export & clearance advisory", "Get documentation right for Nigeria Customs' B'Odogwu platform and keep cargo moving through the ports.", ["Form M and PAAR documentation review", "Coordination with licensed customs agents", "Demurrage and delay reduction"]),
-            ("warehouse", "Warehouse management systems", "We implement warehouse management systems and redesign the processes around them, so picking is faster and stock counts stay accurate.", ["WMS selection, setup and go-live", "Layout, slotting and barcode scanning", "Inventory policy and cycle counting"]),
+            ("warehouse", "Warehouse design", "Layouts and processes that speed up picking, use space well and keep stock counts accurate.", ["Layout and slotting design", "Receiving, picking and dispatch processes", "Inventory policy and cycle counting"]),
             ("logistics", "Fleet & last-mile optimisation", "Plan routes and schedules around Lagos traffic and get more deliveries out of every vehicle.", ["Route and load planning", "Vehicle tracking and telematics", "Driver and dispatch processes"]),
             ("chart", "Logistics technology & visibility", "Connect tracking, inventory and order systems so everyone works from the same live information.", ["Shipment and order tracking", "ERP and system integration", "Dashboards and KPIs"]),
             ("users", "3PL & carrier selection", "Choose and manage freight forwarders, haulage firms and third-party warehouses that perform.", ["Tender preparation and evaluation", "SLA and contract design", "Performance scorecards"]),
@@ -117,6 +117,11 @@ PAGES = {
             ("Who will actually do the work?", "Our operations team delivers the implementation, led by our Chief Operating Officer, with our Head of Technology responsible for solution design and integration."),
         ],
     ),
+}
+
+CROSSLINK = {
+    "it": '<p class="crosslink reveal reveal-d4">Looking for ERP or procurement software? Our <a href="/business-systems/">Business Systems</a> practice selects, implements and supports it.</p>',
+    "logistics": '<p class="crosslink reveal reveal-d4">Need a warehouse management system to run it? Our <a href="/business-systems/">Business Systems</a> practice implements and supports WMS software.</p>',
 }
 
 MODELS = [
@@ -160,6 +165,7 @@ def build(slug):
       <h2 class="reveal reveal-d1">{p["intro_h"]}</h2>
       {"".join(f'<p class="lede reveal reveal-d2" style="margin-top:22px">{x}</p>' for x in p["intro"])}
       <ul class="checks reveal reveal-d3">{checks}</ul>
+      {CROSSLINK.get(slug, "")}
     </div>
     <div class="split-media reveal reveal-d1">
       <span class="deco" aria-hidden="true"></span>

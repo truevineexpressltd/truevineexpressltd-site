@@ -156,8 +156,7 @@ def contact():
       <div class="info reveal reveal-d1"><small>Call</small><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a><p class="sub">Speak to a consultant directly.</p></div>
       <div class="info reveal reveal-d2"><small>Email</small><a href="mailto:{EMAIL}">{EMAIL}</a><p class="sub">Send documents, tenders or RFQs here.</p></div>
       <div class="info reveal reveal-d3"><small>Office</small><p>{ADDRESS_LINES[0]}<br>{ADDRESS_LINES[1]}</p><p class="sub"><a href="https://www.google.com/maps/dir/?api=1&amp;destination=92+Obafemi+Awolowo+Way+Ikeja+Lagos" target="_blank" rel="noopener" class="link-arrow" style="font-size:.9rem">Get directions {icon("arrow")}</a></p></div>
-      <div class="map reveal reveal-d4"><iframe title="Google Map of our office at 92 Obafemi Awolowo Way, Ikeja, Lagos" src="https://maps.google.com/maps?q=92%20Obafemi%20Awolowo%20Way%2C%20Ikeja%2C%20Lagos&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-      <p class="map-note reveal reveal-d4"><a href="https://www.google.com/maps/search/?api=1&amp;query=92+Obafemi+Awolowo+Way+Ikeja+Lagos" target="_blank" rel="noopener">View 92 Obafemi Awolowo Way, Ikeja on Google Maps</a></p>
+      <div class="map reveal reveal-d4"><iframe title="Google Map of our office at 92 Obafemi Awolowo Way, 2nd Floor, Ikeja, Lagos" src="https://maps.google.com/maps?q=92%20Obafemi%20Awolowo%20Way%2C%20Ikeja%2C%20Lagos&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
     </aside>
   </div>
 </section>
@@ -165,7 +164,7 @@ def contact():
     schema = {"@context": "https://schema.org", "@type": "ContactPage", "name": "Contact Truevine Express Limited", "url": SITE + "/contact/",
               "mainEntity": {"@id": SITE + "/#org"}}
     return layout(path="/contact/", title="Contact Truevine Express Limited | Book a Consultation in Lagos",
-                  description="Book a free 30-minute consultation with Truevine Express. Call 0703 590 9781, email info@truevineexpressltd.com or visit 92 Obafemi Awolowo Way, Ikeja, Lagos.",
+                  description="Book a free 30-minute consultation with Truevine Express. Call 0703 590 9781, email info@truevineexpressltd.com or visit 92 Obafemi Awolowo Way, 2nd Floor, Ikeja.",
                   body=body, current="/contact/", schema=[schema, breadcrumb_schema([("Home", "/"), ("Contact", "/contact/")])])
 
 
